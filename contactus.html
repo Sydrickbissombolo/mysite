@@ -37,7 +37,7 @@
         input,
         textarea {
             /* To make sure that all text fields have the same font settings By default, textareas have a monospace font */
-            font: 1em sans-serif;
+            font: 1em Arial;
             /* To give the same size to all text fields */
             width: 300px;
             box-sizing: border-box; /* To harmonize the look & feel of text field border */
@@ -67,76 +67,56 @@
             /* This extra margin represent roughly the same space as the space between the labels and their text fields */
             margin-left: 0.5em;
         }
-        .success {
+        .success-message {
         color: green;
         }
     </style>
 </head>
 <body>
-<header>    
+<header>
     <a id="logo_link" href="index1.html">
-            <img class="logo" src="images/logo.png" alt="Dry Oar Logo">
+        <img class="logo" src="images/logo.png" alt="Dry Oar Logo">
 
-    </a>
-    <nav>
-        <a href="index.html">Home Page</a>
-        <a href="rivers.html">Rivers</a>
-        <a href="#">About</a>
-        <a href="site-plan-rafting.html">Site Plan</a>
-        <a href="contactus.html">Contact Us</a>   
-    </nav>
+</a>
+<nav>
+    <a href="index.html">Home Page</a>
+    <a href="rivers.html">Rivers</a>
+    <a href="#">About</a>
+    <a href="site-plan-rafting.html">Site Plan</a>
+    <a href="contactus.html">Contact Us</a>   
+</nav>
 </header>
-<form action="/my-handling-form-page" method="post">
+<form action="/my-handling-form-page" method="post" onsubmit="submitForm(event)">
     <ul>
         <li>
             <label for="name">Name:</label>
-            <input type="text" id="name" name="user_name" />
+            <input type="text" id="name" name="user_name" required />
         </li>
         <li>
             <label for="mail">E-mail:</label>
-            <input type="email" id="mail" name="user_mail" />
+            <input type="email" id="mail" name="user_mail" required />
         </li>
         <li>
             <label for="msg">Message:</label>
-            <textarea id="msg" name="user_message"></textarea>
+            <textarea id="msg" name="user_message" required></textarea>
         </li>
         <li class="button">
             <button type="submit">Submit</button>
         </li>
     </ul>
 </form>
-<footer>
-    <p>Dry Oar &copy; 2023 - Sydrick Newton Bissombolo</p>
-    <p><a href="site-plan-rafting.html">Site Plan</a></p>
-    <p><a href="contactus.html">Contact Us</a></p>
-    <div class="social">
-        <a href="https://facebook.com">
-            <img src="images/facebook.png" alt="fb icon">
-        </a>
-        <a href="https://twitter.com">
-            <img src="images/twitter.png" alt="twitter icon">
-        </a>
-        <a href="https://instagram.com">
-            <img src="images/instagram.png" alt="instagram icon">
-        </a>
-    </div>
-</footer>
+<div id="success-message" style="display: none;">Successfuly sent!</div>
 <script>
-    // get the feedback div element so we can do something with it.
-    const feedbackElement = document.getElementById('feedback');
-    // get the form so we can read what was entered in it.
-    const formElement = document.forms[0];
-    // add a 'listener' to wait for a submission of our form. When that happens run the code below.
-    formElement.addEventListener('submit', function(e) {
-        // stop the form from doing the default action.
-        e.preventDefault();
-           // set the contents of our feedback element to a message letting the user know the form was submitted successfully. Notice that we pull the name that was entered in the form to personalize the message!
-        feedbackElement.innerHTML = 'Hello '+ formElement.user_name.value +'! Thank you for your message. We will get back with you as soon as possible!';
-        // make the feedback element visible.
-        feedbackElement.style.display = "block";
-        // add a class to move everything down so our message doesn't cover it.
-        document.body.classList.toggle('moveDown');
-    });
+    function submitForm(event) {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("mail").value;
+        const message = document.getElementById("msg").value;
+        const successMessage = document.getElementById("success-message");
+
+        // Display the success message
+        successMessage.style.display = "block";
+    }
 </script>
 </body>
 </html>
